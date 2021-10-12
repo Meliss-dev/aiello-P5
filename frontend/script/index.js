@@ -4,13 +4,11 @@ const fetchProducts = fetch("http://localhost:3000/api/cameras");
 
 fetchProducts
   .then(async (response) => {
-    
     if (response.ok) {
-    const produits = await response.json();
-    console.log(produits);
+      const produits = await response.json();
+      console.log(produits);
 
       for (let i = 0; i < produits.length; i++) {
-
         let product = produits[i];
 
         let prixFormate = formaterPrix(product.price);
@@ -26,21 +24,18 @@ fetchProducts
           </a>
         </div>
   `;
-  }
-  }
-})
-  
-  .catch(() => {
-        alert(
-          "Une erreur semble survenir. Assurez-vous d'être connecté au serveur 3000"
-        );
+      }
+    }
   })
 
- 
+  .catch(() => {
+    alert(
+      "Une erreur semble survenir. Assurez-vous d'être connecté au serveur 3000"
+    );
+  });
 
 // Function pour arrondir le prix
 function formaterPrix(prix) {
   let arrondi = prix / 100;
   return arrondi.toFixed(2);
 }
-
