@@ -29,11 +29,11 @@ if (produitsPanier === null) {
     affichagePanier =
       affichagePanier +
       `
-  <div class="fw-bold"> ${produitsPanier[k].nom} </div>
-  <div class="font-weight-bold"> Quantité : ${
+  <div> <span class="fw-bold"> Article : </span> ${produitsPanier[k].nom} </div>
+  <div> <span class="fw-bold">  Quantité :</span>  ${
     produitsPanier[k].quantite || 1
   } </div>
-  <div class="text-decoration-underline"> Sous-total : ${formaterPrix(
+  <div> <span class="fw-bold">Sous-total :</span> ${formaterPrix(
     produitsPanier[k].prix
   )} € </div>
 `;
