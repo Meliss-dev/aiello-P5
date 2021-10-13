@@ -58,7 +58,7 @@ product.then(async (response) => {
     let nomProduit = document.querySelector("#nom_produit");
     console.log(nomProduit);
     nomProduit.innerHTML = `
-    ${produit.name}
+    Oricamera | ${produit.name}
   `;
 
     // BOUTON AJOUT PANIER
@@ -113,4 +113,3 @@ async function addToCart() {
   localStorage.setItem("produitsPanier", JSON.stringify(panier));
   console.log(panier);
 }
-

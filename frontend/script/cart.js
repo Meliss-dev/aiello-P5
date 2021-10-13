@@ -13,10 +13,13 @@ console.log(produitsPanier);
 const panierVide = document.querySelector("#liste-panier");
 console.log(panierVide);
 
-if (produitsPanier === null) {
+// SI LE PANIER EST VIDE
+if (produitsPanier === null || produitsPanier == 0) {
   panierVide.innerHTML = `
     <div class="fw-bold"> Le panier est vide </div>
     `;
+
+    // SI LE PANIER N'EST PAS VIDE
 } else {
   let affichagePanier = "";
   console.log(affichagePanier);
@@ -29,13 +32,16 @@ if (produitsPanier === null) {
     affichagePanier =
       affichagePanier +
       `
-  <div> <span class="fw-bold"> Article : </span> ${produitsPanier[k].nom} </div>
+  <div> <div> <span class="fw-bold"> Article : </span> ${
+    produitsPanier[k].nom
+  } </div><button class="remove_article"> Supprimer l'article <i class="fas fa-trash"></i></button></div>
   <div> <span class="fw-bold">  Quantité :</span>  ${
     produitsPanier[k].quantite || 1
   } </div>
   <div> <span class="fw-bold">Sous-total :</span> ${formaterPrix(
     produitsPanier[k].prix
   )} € </div>
+  <div class="trait_dessus"><hr></div>
 `;
   }
 
@@ -49,6 +55,29 @@ if (produitsPanier === null) {
     localStorage.getItem("produitsPanier") || "[]"
   );
   console.log(produitsDuPanier);
+
+  //SUPPRIMER UN ARTICLE
+  let buttonSupprimer = document.querySelectorAll(".remove_article");
+  console.log(buttonSupprimer);
+
+  for (let l = 0; l < buttonSupprimer.length; l++) {
+    buttonSupprimer[l].addEventListener("click", (event) => {
+      event.preventDefault();
+
+      let idSupprimer = produitsPanier[l].id;
+      console.log(idSupprimer);
+
+      produitsPanier = produitsPanier.filter((el) => el.id !== idSupprimer);
+      console.log(produitsPanier);
+
+      localStorage.setItem("produitsPanier", JSON.stringify(produitsPanier));
+      console.log(produitsPanier);
+
+      alert("Cet article a été supprimé du panier");
+
+      document.location.href = "cart.html";
+    });
+  }
 
   //VIDER LE PANIER
   const btn_supprimer_panier_html = `
