@@ -28,6 +28,7 @@ product.then(async (response) => {
               <form>
                 <label for="lenses_produit">Choisir la lentille</label>
                 <select name="lenses_produit" id="lenses_produit">
+                ${menuDeroulant(produit)}
                 </select> </br>
            
                 <label for="itemQuantity"> Quantité: </label>
@@ -53,12 +54,38 @@ product.then(async (response) => {
     </div>
 
   `;
-  }
-}
-)
-  // Function pour arrondir le prix
-function formaterPrix(prix) {
-    let arrondi = prix / 100;
-    return arrondi.toFixed(2);
-  }
+
+
   
+  }
+
+  
+});
+
+
+// Function pour arrondir le prix
+function formaterPrix(prix) {
+  let arrondi = prix / 100;
+  return arrondi.toFixed(2);
+}
+
+
+// Menu déroulant pour le choix de la lentille
+function menuDeroulant(produit) {
+  const optionLentilles = produit.lenses;
+
+  let structureOptions = [];
+  console.log(optionLentilles);
+
+  for (let i = 0; i < optionLentilles.length; i++) {
+    structureOptions =
+      structureOptions +
+      `
+      <option value="${i + 1}">${optionLentilles[i]}</option>
+        `;
+  }
+
+  console.log(structureOptions);
+
+  return structureOptions;
+}
