@@ -54,21 +54,20 @@ product.then(async (response) => {
     </div>
 
   `;
-
-
-  
+    //AFFICHAGE NOM PRODUIT DANS LA BALISE TITLE
+    let nomProduit = document.querySelector("#nom_produit");
+    console.log(nomProduit);
+    nomProduit.innerHTML = `
+    ${produit.name}
+  `;
   }
-
-  
 });
-
 
 // Function pour arrondir le prix
 function formaterPrix(prix) {
   let arrondi = prix / 100;
   return arrondi.toFixed(2);
 }
-
 
 // Menu déroulant pour le choix de la lentille
 function menuDeroulant(produit) {
