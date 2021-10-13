@@ -8,7 +8,14 @@
     display: flex;
     justify-content: space-between;
 }
-   
+
+.navbar-brand{
+    margin-left: 5%;
+}
+.nav-item {
+    margin-right: 5%;
+}
+
 .jumbotron {
     margin-bottom: 0px;
     height: 10%;
@@ -18,37 +25,34 @@
     width: 100%; /* Il occupe toute la largeur de l'écran */
 }
    
-.display-5 , .lead{
-    text-shadow: none;
-}
-
 
 .articles{
     margin-top: 20px;
     margin-bottom: 20px;
     color: gray;
+    text-decoration: none;
+    transition: transform 1s linear;
 }
 
 .articles:hover{
-    box-shadow: 10px 5px 5px#DCDCDC;
+    box-shadow: 10px 5px 1px rgb(248,249,250);
     text-decoration: none;
     color: black;
+    transform: scale(1.05);
 }
 
-.container{
-    height: 100%;
-}
 
 .fiche-produit{
     width: 100%;
 }
 
 .article{
-    height: 50%;
-    width: 70%;
+    width: 50vw;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    box-shadow: -10px -10px 5px #DCDCDC;
+
 }
 
 .produit{

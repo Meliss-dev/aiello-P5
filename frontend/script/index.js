@@ -18,7 +18,7 @@ fetchProducts
           <a class="card articles" href="product.html?id=${product._id}">
             <img class="card-img-top" src="${product.imageUrl}"/>
           <div class="card-body">
-            <h2 class="card-title">${product.name} </h2>
+            <h2 class="card-title ">${product.name} </h2>
             <p class="card-text">${formaterPrix(product.price)} € </p>
           </div>
           </a>

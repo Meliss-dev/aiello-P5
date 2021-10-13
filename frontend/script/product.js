@@ -22,16 +22,16 @@ product.then(async (response) => {
             <img class="card-img-top " src="${produit.imageUrl}"/>
           <div class="card-body">
             <h2 class="card-title">${produit.name} </h2>
-            <p class="card-text text-justify">${produit.description} </p>
+            <p class="card-text text-start">${produit.description} </p>
             
             <div class="produit">
               <form>
-                <label for="lenses_produit">Choisir la lentille</label>
+                <label for="lenses_produit" class="fw-bold">Choisir la lentille : </label>
                 <select name="lenses_produit" id="lenses_produit">
                 ${menuDeroulant(produit)}
                 </select> </br>
            
-                <label for="itemQuantity"> Quantité: </label>
+                <label for="itemQuantity" class="fw-bold"> Quantité: </label>
                 <select name="itemQuantity" id="itemQuantity">
                 <option value= "1">1</option value>
                 <option value= "2">2</option value>
@@ -43,7 +43,7 @@ product.then(async (response) => {
 
             </form> 
                 
-                <p class="card-text text-center font-weight-bold"">${prixFormate}€ </p>
+                <p class="card-text text-center fw-bold">${prixFormate}€ </p>
                 
                 <button type="button" class="btn btn-primary rounded-pill" id="btn" ">Ajouter Au Panier</button>
 
