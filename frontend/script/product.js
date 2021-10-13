@@ -68,13 +68,13 @@ product.then(async (response) => {
   }
 });
 
-// Function pour arrondir le prix
+// FONCTION POUR ARRONDIR LE PRIX
 function formaterPrix(prix) {
   let arrondi = prix / 100;
   return arrondi.toFixed(2);
 }
 
-// Menu déroulant pour le choix de la lentille
+// MENU DEROULANT POUR LE CHOIX DE LA LENTILLE
 function menuDeroulant(produit) {
   const optionLentilles = produit.lenses;
 
@@ -101,7 +101,7 @@ async function addToCart() {
       return res.json();
     }
   );
-
+  alert("Votre article a été ajouté au panier");
   let panier = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
   panier.push({
     id: jsonData._id,
