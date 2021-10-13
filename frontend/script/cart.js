@@ -42,3 +42,22 @@ let produitsDuPanier = JSON.parse(
   localStorage.getItem("produitsPanier") || "[]"
 );
 console.log(produitsDuPanier);
+
+//VIDER LE PANIER
+const btn_supprimer_panier_html = `
+  <button class="btn_supprimer_panier btn btn-primary ">Vider le panier </button>
+`;
+showPanier.insertAdjacentHTML("beforeend", btn_supprimer_panier_html);
+
+const btn_supprimer_panier = document.querySelector(".btn_supprimer_panier");
+console.log(btn_supprimer_panier);
+
+btn_supprimer_panier.addEventListener("click", (e) => {
+  e.preventDefault;
+
+  localStorage.removeItem("produitsPanier");
+
+  alert("Le panier a été vidé");
+
+  window.location.href = "index.html";
+});
