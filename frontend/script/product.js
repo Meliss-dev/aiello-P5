@@ -113,3 +113,4 @@ async function addToCart() {
   localStorage.setItem("produitsPanier", JSON.stringify(panier));
   console.log(panier);
 }
+
