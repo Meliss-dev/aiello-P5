@@ -60,6 +60,11 @@ product.then(async (response) => {
     nomProduit.innerHTML = `
     ${produit.name}
   `;
+
+    // BOUTON AJOUT PANIER
+    let click = document.querySelector("#btn");
+    console.log(click);
+    click.addEventListener("click", addToCart);
   }
 });
 
@@ -87,4 +92,24 @@ function menuDeroulant(produit) {
   console.log(structureOptions);
 
   return structureOptions;
+}
+
+// FONCTION AJOUTER AU PANIER
+async function addToCart() {
+  let jsonData = await fetch("http://localhost:3000/api/cameras/" + id).then(
+    function (res) {
+      return res.json();
+    }
+  );
+
+  let panier = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
+  panier.push({
+    id: jsonData._id,
+    nom: jsonData.name,
+    prix: jsonData.price * itemQuantity.value,
+    quantite: itemQuantity.value,
+  });
+
+  localStorage.setItem("produitsPanier", JSON.stringify(panier));
+  console.log(panier);
 }
