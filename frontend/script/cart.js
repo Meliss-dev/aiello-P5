@@ -161,4 +161,18 @@ async function validationPanier() {
   console.log(envoieAuServeur);
 
   localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
-}
+
+  //ENVOI AU SERVEUR
+
+  const requestOptions = fetch("https://restapi.fr/api/commandeTest", {
+  method: "POST",
+  body: JSON.stringify(envoieAuServeur),
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+console.log(requestOptions);
+};
+
+

@@ -78,3 +78,18 @@
 .fa-trash{
     background-color: white;
 }
+
+#envoyerFormulaire{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    align-items: center;
+   
+}
+
+.panier-formulaire{
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+}
