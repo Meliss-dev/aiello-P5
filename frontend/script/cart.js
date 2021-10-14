@@ -128,6 +128,22 @@ async function validationPanier() {
   };
   console.log('commande');
   console.log(commande);
+
+
+  let recuperationFormulaire = JSON.parse(localStorage.getItem("commande") || "[]");
+  recuperationFormulaire.push({
+    contact: {
+      firstName: firstname,
+      lastName: lastname,
+      address: adress,
+      city: city,
+      email: email,
+    },
+    products: produits.map((produit) => produit.id),
+  });
+
+  localStorage.setItem("recuperationFormulaire", JSON.stringify(commande));
+  console.log(recuperationFormulaire);
+}
   
-  
-};
+
