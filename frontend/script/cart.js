@@ -56,6 +56,28 @@ if (produitsPanier === null || produitsPanier == 0) {
   );
   console.log(produitsDuPanier);
 
+
+  //VIDER LE PANIER
+  const btn_supprimer_panier_html = `
+  <button class="btn_supprimer_panier btn btn-primary ">Vider le panier </button>
+`;
+  showPanier.insertAdjacentHTML("beforeend", btn_supprimer_panier_html);
+
+  const btn_supprimer_panier = document.querySelector(".btn_supprimer_panier");
+  console.log(btn_supprimer_panier);
+
+  btn_supprimer_panier.addEventListener("click", (e) => {
+    e.preventDefault;
+
+    localStorage.removeItem("produitsPanier");
+
+    alert("Le panier a été vidé");
+
+    window.location.href = "index.html";
+  });
+  
+  }
+
   //SUPPRIMER UN ARTICLE
   let buttonSupprimer = document.querySelectorAll(".remove_article");
   console.log(buttonSupprimer);
@@ -79,22 +101,33 @@ if (produitsPanier === null || produitsPanier == 0) {
     });
   }
 
-  //VIDER LE PANIER
-  const btn_supprimer_panier_html = `
-  <button class="btn_supprimer_panier btn btn-primary ">Vider le panier </button>
-`;
-  showPanier.insertAdjacentHTML("beforeend", btn_supprimer_panier_html);
 
-  const btn_supprimer_panier = document.querySelector(".btn_supprimer_panier");
-  console.log(btn_supprimer_panier);
 
-  btn_supprimer_panier.addEventListener("click", (e) => {
-    e.preventDefault;
 
-    localStorage.removeItem("produitsPanier");
+//FORMULAIRE POUR VALIDER LE PANIER
+async function validationPanier() {
+  produits = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
+  console.log('produits');
+  console.log(produits);
 
-    alert("Le panier a été vidé");
+  const firstname = document.getElementById("prenom").value;
+  const lastname = document.getElementById("nom").value;
+  const adress = document.getElementById("adresse").value;
+  const city = document.getElementById("ville").value;
+  const email = document.getElementById("email").value;
 
-    window.location.href = "index.html";
-  });
-}
+  const commande = {
+    contact: {
+      firstName: firstname,
+      lastName: lastname,
+      address: adress,
+      city: city,
+      email: email,
+    },
+    products: produits.map((produit) => produit.id),
+  };
+  console.log('commande');
+  console.log(commande);
+  
+  
+};

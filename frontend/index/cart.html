@@ -52,15 +52,11 @@
                         <div class="row">
                             <div class="col">
                             <label for="cp">Adresse</label> :
-                            <input type="text" name="adresse" id="adresse" class="form-control" placeholder="Adresse" required>
+                            <textarea name="adresse" id="adresse" class="form-control" placeholder="Adresse" required></textarea>
                             </div>
                         </div>
     
                         <div class="row">
-                            <div class="col">
-                            <label for="cp">Code Postal</label> :
-                            <input type="text"  name="cp" id="cp" class="form-control" placeholder="Code postal" required/>
-                            </div>
                             <div class="col">
                             <label for="ville">Ville</label> :
                             <input type="text" name="ville" id="ville" class="form-control" placeholder="Ville" required>
@@ -74,7 +70,7 @@
                             </div>
                         </div>
     
-                        <button type="submit" class="btn btn-primary">Valider le panier</button>
+                        <button type="submit" id="envoyerFormulaire" class="btn btn-primary">Valider le panier</button>
                     </form>
     
                     <div id="reponse"></div>
