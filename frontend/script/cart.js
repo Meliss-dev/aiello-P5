@@ -116,7 +116,7 @@ async function validationPanier() {
   const city = document.getElementById("ville").value;
   const email = document.getElementById("email").value;
 
-  const commande = {
+  const formulaire = {
     contact: {
       firstName: firstname,
       lastName: lastname,
@@ -124,26 +124,23 @@ async function validationPanier() {
       city: city,
       email: email,
     },
-    products: produits.map((produit) => produit.id),
   };
-  console.log('commande');
-  console.log(commande);
+
+  console.log('formulaire');
+  console.log(formulaire);
 
 
-  let recuperationFormulaire = JSON.parse(localStorage.getItem("commande") || "[]");
-  recuperationFormulaire.push({
-    contact: {
-      firstName: firstname,
-      lastName: lastname,
-      address: adress,
-      city: city,
-      email: email,
-    },
-    products: produits.map((produit) => produit.id),
-  });
 
-  localStorage.setItem("recuperationFormulaire", JSON.stringify(commande));
-  console.log(recuperationFormulaire);
+  //localStorage.setItem("recuperationFormulaire", JSON.stringify(commande));
+  //console.log(recuperationFormulaire);
+
+
+  let envoieAuServeur = {
+    produits,
+    formulaire,
+  };
+  console.log(envoieAuServeur);
+
+  localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
+ 
 }
-  
-
