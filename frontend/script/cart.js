@@ -124,36 +124,34 @@ async function validationPanier() {
   console.log("formulaire");
   console.log(formulaire);
 
-  
   //CONTRÔLE FORMULAIRE
   //PRENOM
   const lePrenom = formulaire.contact.firstName;
   console.log(lePrenom);
 
-  if(/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)){
-    console.log("OK");
+  if (/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)) {
   } else {
-    console.log("KO");
-  };
+    alert("Le prénom n'est pas valide - Ne pas dépasser 20 caractères");
+  }
 
+  //NOM
   const leNom = formulaire.contact.lastName;
   console.log(leNom);
 
-  if(/^[A-Z - a-z -é è ï]{2,20}$/.test(leNom)){
-    console.log("OK");
+  if (/^[A-Z - a-z -é è ï]{2,20}$/.test(leNom)) {
   } else {
-    console.log("KO");
-  };
+    alert("Le nom n'est pas valide - Ne pas dépasser 20 caractères");
+  }
 
+
+  //VILLE
   const laVille = formulaire.contact.city;
   console.log(laVille);
 
-  if (/[A-Z - a-z -é è ï]/.test(laVille)) {
-    console.log("OK");
+  if (/[A-Z - a-z -é è ï î]{2,30}$/.test(laVille)) {
   } else {
-    console.log("KO");
-  };
-
+    alert("Le nom n'est pas valide - Ne pas dépasser 30 caractères");
+  }
 
   //ENVOI AU LOCALSTORAGE
   let envoieAuServeur = {
@@ -163,5 +161,4 @@ async function validationPanier() {
   console.log(envoieAuServeur);
 
   localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
-
 }
