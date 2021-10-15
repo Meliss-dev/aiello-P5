@@ -15,10 +15,10 @@ function formaterPrix(prix) {
 }
 
 cardConfirmation.innerHTML = `
-    <div>Oricamera vous remercie pour votre confiance</div>
-    <div> Voici le numéro de votre commande : ${responseId}</div>
-    <div> Pour un montant total de : ${formaterPrix(
+    <div class="fw-bold fs-4 lh-lg text-warning">Oricamera vous remercie pour votre confiance</div>
+    <div> <span class="fw-bold">Voici le numéro de votre commande : </span>${responseId}</div>
+    <div> <span class="fw-bold">Pour un montant total de : </span>${formaterPrix(
       responseMontantTotal
     )} €</div>
-    <div>A bientôt sur Oricamera</div>
+    <div class="fw-bold fs-5 lh-lg text-warning">A bientôt sur Oricamera</div>
 `;
