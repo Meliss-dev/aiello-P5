@@ -76,7 +76,7 @@
     border: none;
 }
 .fa-trash{
-    background-color: white;
+    color:rgb(233,173,90);
 }
 
 #envoyerFormulaire{
@@ -95,8 +95,14 @@
 }
 
 #confirmation{
-    width: 70%;
+    width: 85%;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.btn-valider , .btn-vider{
+    background-color: rgb(233,173,90);
+    border: none;
+}
+

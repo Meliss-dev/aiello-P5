@@ -34,7 +34,7 @@ if (produitsPanier === null || produitsPanier == 0) {
       `
   <div class="supprimer_article"> <div> <span class="fw-bold"> Article : </span> ${
     produitsPanier[k].nom
-  } </div><button class="remove_article"> <i class="fas fa-trash text-primary"></i></button></div>
+  } </div><button class="remove_article"> <i class="fas fa-trashTotal"></i></button></div>
   <div> <span class="fw-bold">  Quantité :</span>  ${
     produitsPanier[k].quantite || 1
   } </div>
@@ -54,8 +54,8 @@ if (produitsPanier === null || produitsPanier == 0) {
   console.log("hi");
   console.log(montantTotal);
 
-  let montantTotalLocalStorage = localStorage.setItem(
-    "montantTotalLocalStorage",
+  let totalPanier= localStorage.setItem(
+    "totalPanier",
     JSON.stringify(montantTotal)
   );
 
@@ -66,7 +66,7 @@ if (produitsPanier === null || produitsPanier == 0) {
 
   //VIDER LE PANIER
   const btn_supprimer_panier_html = `
-  <button class="btn_supprimer_panier btn btn-primary ">Vider le panier </button>
+  <button class="btn_supprimer_panier btn btn-vider ">Vider le panier </button>
 `;
   showPanier.insertAdjacentHTML("beforeend", btn_supprimer_panier_html);
 
