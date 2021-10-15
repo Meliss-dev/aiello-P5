@@ -93,3 +93,10 @@
     flex-direction: column;
    justify-content: center;
 }
+
+#confirmation{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

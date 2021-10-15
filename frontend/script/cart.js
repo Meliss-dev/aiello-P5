@@ -51,6 +51,14 @@ if (produitsPanier === null || produitsPanier == 0) {
       montantTotal
     )}€</div>`;
 
+  console.log("hi");
+  console.log(montantTotal);
+
+  let montantTotalLocalStorage = localStorage.setItem(
+    "montantTotalLocalStorage",
+    JSON.stringify(montantTotal)
+  );
+
   let produitsDuPanier = JSON.parse(
     localStorage.getItem("produitsPanier") || "[]"
   );
@@ -189,7 +197,6 @@ async function validationPanier() {
 
         //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
         window.location = "confirmation.html";
-
       } else {
         console.log("Reponse du serveur : ${response.status}");
         alert("Probleme avec le serveur : erreur ${response.status}");
