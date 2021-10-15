@@ -143,7 +143,6 @@ async function validationPanier() {
     alert("Le nom n'est pas valide - Ne pas dépasser 20 caractères");
   }
 
-
   //VILLE
   const laVille = formulaire.contact.city;
   console.log(laVille);
@@ -164,15 +163,41 @@ async function validationPanier() {
 
   //ENVOI AU SERVEUR
 
-  const requestOptions = fetch("https://restapi.fr/api/commandeTest", {
-  method: "POST",
-  body: JSON.stringify(envoieAuServeur),
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+  const server = fetch("https://restapi.fr/api/commandeTest", {
+    method: "POST",
+    body: JSON.stringify(envoieAuServeur),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-console.log(requestOptions);
-};
+  console.log(server);
 
+  server.then(async (response) => {
+    try {
+      const contenu = await response.json();
+      console.log("contenu de la response");
+      console.log(contenu);
 
+      if (response.ok) {
+        console.log("Resultat de reponse.ok : ${response.ok}");
+        console.log("id de response");
+        console.log(contenu._id);
+
+        //ENVOI DE L'ID DANS LE LOCALSTORAGE
+        localStorage.setItem("responseId", contenu._id);
+
+        //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
+        window.location = "confirmation.html";
+
+      } else {
+        console.log("Reponse du serveur : ${response.status}");
+        alert("Probleme avec le serveur : erreur ${response.status}");
+      }
+    } catch (e) {
+      console.log("ERREUR qui vient du catch()");
+      console.log(e);
+      alert("ERREUR qui vient du catch ${e}");
+    }
+  });
+}
