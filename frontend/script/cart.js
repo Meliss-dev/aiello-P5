@@ -134,9 +134,6 @@ async function validationPanier() {
 
   //CONTRÔLE FORMULAIRE
 
-  const prenomNOmVille = (value) => {
-
-  }
   //PRENOM
   function prenomControle(){
     //controle validite prenom
@@ -148,6 +145,7 @@ async function validationPanier() {
       return false;
     }
   }
+
   //NOM
   function nomControle(){
     const leNom = formulaire.contact.lastName;
@@ -169,57 +167,60 @@ async function validationPanier() {
       return false;
     }
   }
+
   //ENVOI AU LOCALSTORAGE AVEC CONDITION
 
-  if(prenomControle() && nomControle() && villeControle()){
-    let envoieAuServeur = {
+  let envoieAuServeur = {
     produits,
     formulaire,
   };
-  localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
-  }else{
+
+  if(prenomControle() && nomControle() && villeControle()){
+      localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
+      console.log(prenomControle());
+
+    //ENVOI AU SERVEUR
+
+    const server = fetch("https://restapi.fr/api/commandeTest", {
+      method: "POST",
+      body: JSON.stringify(envoieAuServeur),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(server);
+
+    server.then(async (response) => {
+      try {
+        const contenu = await response.json();
+        console.log("contenu de la response");
+        console.log(contenu);
+
+        if (response.ok) {
+          console.log("Resultat de reponse.ok : ${response.ok}");
+          console.log("id de response");
+          console.log(contenu._id);
+
+          //ENVOI DE L'ID DANS LE LOCALSTORAGE
+          localStorage.setItem("responseId", contenu._id);
+
+          //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
+          window.location = "confirmation.html";
+          console.log("test");
+        } else {
+          console.log("Reponse du serveur : ${response.status}");
+          alert("Probleme avec le serveur : erreur ${response.status}");
+        }
+      } catch (e) {
+        console.log("ERREUR qui vient du catch()");
+        console.log(e);
+        alert("ERREUR qui vient du catch ${e}");
+      }
+    });
+  } else{
     alert("Veuillez bien remplir le fonctionnaire");
   }
 
   
-
-
-  //ENVOI AU SERVEUR
-
-  const server = fetch("https://restapi.fr/api/commandeTest", {
-    method: "POST",
-    body: JSON.stringify(envoieAuServeur),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  console.log(server);
-
-  server.then(async (response) => {
-    try {
-      const contenu = await response.json();
-      console.log("contenu de la response");
-      console.log(contenu);
-
-      if (response.ok) {
-        console.log("Resultat de reponse.ok : ${response.ok}");
-        console.log("id de response");
-        console.log(contenu._id);
-
-        //ENVOI DE L'ID DANS LE LOCALSTORAGE
-        localStorage.setItem("responseId", contenu._id);
-
-        //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
-        window.location = "confirmation.html";
-      } else {
-        console.log("Reponse du serveur : ${response.status}");
-        alert("Probleme avec le serveur : erreur ${response.status}");
-      }
-    } catch (e) {
-      console.log("ERREUR qui vient du catch()");
-      console.log(e);
-      alert("ERREUR qui vient du catch ${e}");
-    }
-  });
 }
