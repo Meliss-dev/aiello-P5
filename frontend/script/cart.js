@@ -133,41 +133,56 @@ async function validationPanier() {
   console.log(formulaire);
 
   //CONTRÔLE FORMULAIRE
-  //PRENOM
-  const lePrenom = formulaire.contact.firstName;
-  console.log(lePrenom);
 
-  if (/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)) {
-  } else {
-    alert("Le prénom n'est pas valide - Ne pas dépasser 20 caractères");
+  const prenomNOmVille = (value) => {
+
   }
-
+  //PRENOM
+  function prenomControle(){
+    //controle validite prenom
+    const lePrenom = formulaire.contact.firstName;
+    if (/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)) {
+      return true;
+    } else {
+      alert("Le prénom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères");
+      return false;
+    }
+  }
   //NOM
-  const leNom = formulaire.contact.lastName;
-  console.log(leNom);
-
-  if (/^[A-Z - a-z -é è ï]{2,20}$/.test(leNom)) {
-  } else {
-    alert("Le nom n'est pas valide - Ne pas dépasser 20 caractères");
+  function nomControle(){
+    const leNom = formulaire.contact.lastName;
+    if (/^[A-Z - a-z -é è ï ^0-9]{2,20}$/.test(leNom)) {
+      return true;
+    } else {
+      alert("Le nom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères");
+      return false;
+    }
   }
 
   //VILLE
-  const laVille = formulaire.contact.city;
-  console.log(laVille);
-
-  if (/[A-Z - a-z -é è ï î]{2,30}$/.test(laVille)) {
-  } else {
-    alert("Le nom n'est pas valide - Ne pas dépasser 30 caractères");
+  function villeControle(){
+    const laVille = formulaire.contact.city;
+    if (/[A-Z - a-z -é è ï î]{2,30}$/.test(laVille)) {
+      return true;
+    } else {
+      alert("La ville n'est pas valide - Minimum 2 caractères et ne pas dépasser 30 caractères");
+      return false;
+    }
   }
+  //ENVOI AU LOCALSTORAGE AVEC CONDITION
 
-  //ENVOI AU LOCALSTORAGE
-  let envoieAuServeur = {
+  if(prenomControle() && nomControle() && villeControle()){
+    let envoieAuServeur = {
     produits,
     formulaire,
   };
-  console.log(envoieAuServeur);
-
   localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
+  }else{
+    alert("Veuillez bien remplir le fonctionnaire");
+  }
+
+  
+
 
   //ENVOI AU SERVEUR
 
