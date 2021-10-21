@@ -34,7 +34,7 @@ if (produitsPanier === null || produitsPanier == 0) {
       `
   <div class="supprimer_article"> <div> <span class="fw-bold"> Article : </span> ${
     produitsPanier[k].nom
-  } </div><button class="remove_article"> <i class="fas fa-trashTotal"></i></button></div>
+  } </div><button class="remove_article"> <i class="fas fa-trash Total"></i></button></div>
   <div> <span class="fw-bold">  Quantité :</span>  ${
     produitsPanier[k].quantite || 1
   } </div>

@@ -76,7 +76,7 @@
     border: none;
 }
 .fa-trash{
-    color:rgb(233,173,90);
+   color: rgb(233,173,90);
 }
 
 #envoyerFormulaire{
@@ -103,6 +103,5 @@
 
 .btn-valider , .btn-vider{
     background-color: rgb(233,173,90);
-    border: none;
 }
 
