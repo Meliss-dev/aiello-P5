@@ -120,13 +120,12 @@ async function validationPanier() {
   const email = document.getElementById("email").value;
 
   const formulaire = {
-    contact: {
+  
       firstName: firstname,
       lastName: lastname,
       address: adress,
       city: city,
       email: email,
-    },
   };
 
   console.log("formulaire");
@@ -137,7 +136,7 @@ async function validationPanier() {
   //PRENOM
   function prenomControle(){
     //controle validite prenom
-    const lePrenom = formulaire.contact.firstName;
+    const lePrenom = formulaire.firstName;
     if (/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)) {
       return true;
     } else {
@@ -148,7 +147,7 @@ async function validationPanier() {
 
   //NOM
   function nomControle(){
-    const leNom = formulaire.contact.lastName;
+    const leNom = formulaire.lastName;
     if (/^[A-Z - a-z -é è ï ^0-9]{2,20}$/.test(leNom)) {
       return true;
     } else {
@@ -159,7 +158,7 @@ async function validationPanier() {
 
   //VILLE
   function villeControle(){
-    const laVille = formulaire.contact.city;
+    const laVille = formulaire.city;
     if (/[A-Z - a-z -é è ï î]{2,30}$/.test(laVille)) {
       return true;
     } else {
@@ -171,23 +170,35 @@ async function validationPanier() {
   //ENVOI AU LOCALSTORAGE AVEC CONDITION
 
   let envoieAuServeur = {
-    produits,
-    formulaire,
+    contact : formulaire,
+    products : produits.map(produit => produit.id),
   };
+console.log('envoie au serveur');
+console.log(envoieAuServeur);
 
   if(prenomControle() && nomControle() && villeControle()){
       localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
       console.log(prenomControle());
 
     //ENVOI AU SERVEUR
-
+/*
     const server = fetch("https://restapi.fr/api/commandeTest", {
       method: "POST",
       body: JSON.stringify(envoieAuServeur),
       headers: {
         "Content-Type": "application/json",
       },
+    });*/
+
+    const server = fetch("http://localhost:3000/api/cameras/order", {
+      method: "POST",
+      body: JSON.stringify(envoieAuServeur),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+    
+
 
     console.log(server);
 
@@ -200,14 +211,22 @@ async function validationPanier() {
         if (response.ok) {
           console.log("Resultat de reponse.ok : ${response.ok}");
           console.log("id de response");
-          console.log(contenu._id);
+          console.log(contenu.orderId);
+          //response.json().then(data => {
+            //console.log("data");
+            //console.log(data);
+          
+             //ENVOI DE L'ID DANS LE LOCALSTORAGE
 
-          //ENVOI DE L'ID DANS LE LOCALSTORAGE
-          localStorage.setItem("responseId", contenu._id);
+            localStorage.setItem("responseId", contenu.orderId);
+  
+            //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
+           window.location = "confirmation.html";
+            console.log("test");
+          //})
 
-          //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
-          window.location = "confirmation.html";
-          console.log("test");
+
+          
         } else {
           console.log("Reponse du serveur : ${response.status}");
           alert("Probleme avec le serveur : erreur ${response.status}");
