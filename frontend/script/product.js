@@ -9,11 +9,10 @@ let product = fetch(`http://localhost:3000/api/cameras/${id}`);
 product.then(async (response) => {
   if (response.ok) {
     let produit = await response.json();
+    
     console.log(produit);
 
     let prixFormate = formaterPrix(produit.price);
-
-    console.log("produit");
 
     results.innerHTML += `
   
@@ -89,7 +88,7 @@ function menuDeroulant(produit) {
         `;
   }
 
-  console.log(structureOptions);
+ console.log(structureOptions);
 
   return structureOptions;
 }
@@ -102,6 +101,8 @@ async function addToCart() {
     }
   );
   alert("Votre article a été ajouté au panier");
+
+  //AJOUT DU PANIER AU LOCALSTORAGE
   let panier = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
   panier.push({
     id: jsonData._id,

@@ -1,19 +1,19 @@
-let produitsPanier = JSON.parse(localStorage.getItem("produitsPanier"));
+let produitsPanier = JSON.parse(localStorage.getItem("produitsPanier")|| "[]");
 console.log(produitsPanier);
 
 const showPanier = document.querySelector("#liste-panier");
 console.log(showPanier);
 
+// FONCTION FORMATER PRIX
 function formaterPrix(prix) {
   let arrondi = prix / 100;
   return arrondi.toFixed(2);
 }
-console.log(produitsPanier);
 
+// SI LE PANIER EST VIDE
 const panierVide = document.querySelector("#liste-panier");
 console.log(panierVide);
 
-// SI LE PANIER EST VIDE
 if (produitsPanier === null || produitsPanier == 0) {
   panierVide.innerHTML = `
     <div class="fw-bold"> Le panier est vide </div>
@@ -51,18 +51,19 @@ if (produitsPanier === null || produitsPanier == 0) {
       montantTotal
     )}€</div>`;
 
-  console.log("hi");
   console.log(montantTotal);
 
+  //ENVOI DU MONTANT PANIER AU LOCALSTORAGE
   let totalPanier= localStorage.setItem(
     "totalPanier",
     JSON.stringify(montantTotal)
   );
 
+/*  
   let produitsDuPanier = JSON.parse(
     localStorage.getItem("produitsPanier") || "[]"
   );
-  console.log(produitsDuPanier);
+  console.log(produitsDuPanier);*/
 
   //VIDER LE PANIER
   const btn_supprimer_panier_html = `
@@ -181,14 +182,6 @@ console.log(envoieAuServeur);
       console.log(prenomControle());
 
     //ENVOI AU SERVEUR
-/*
-    const server = fetch("https://restapi.fr/api/commandeTest", {
-      method: "POST",
-      body: JSON.stringify(envoieAuServeur),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });*/
 
     const server = fetch("http://localhost:3000/api/cameras/order", {
       method: "POST",
@@ -198,8 +191,6 @@ console.log(envoieAuServeur);
       },
     });
     
-
-
     console.log(server);
 
     server.then(async (response) => {
@@ -212,9 +203,6 @@ console.log(envoieAuServeur);
           console.log("Resultat de reponse.ok : ${response.ok}");
           console.log("id de response");
           console.log(contenu.orderId);
-          //response.json().then(data => {
-            //console.log("data");
-            //console.log(data);
           
              //ENVOI DE L'ID DANS LE LOCALSTORAGE
 
@@ -223,9 +211,6 @@ console.log(envoieAuServeur);
             //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
            window.location = "confirmation.html";
             console.log("test");
-          //})
-
-
           
         } else {
           console.log("Reponse du serveur : ${response.status}");
@@ -240,6 +225,5 @@ console.log(envoieAuServeur);
   } else{
     alert("Veuillez bien remplir le fonctionnaire");
   }
-
-  
+ 
 }
