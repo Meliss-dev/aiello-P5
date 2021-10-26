@@ -1,4 +1,4 @@
-let produitsPanier = JSON.parse(localStorage.getItem("produitsPanier")|| "[]");
+let produitsPanier = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
 console.log(produitsPanier);
 
 const showPanier = document.querySelector("#liste-panier");
@@ -54,16 +54,10 @@ if (produitsPanier === null || produitsPanier == 0) {
   console.log(montantTotal);
 
   //ENVOI DU MONTANT PANIER AU LOCALSTORAGE
-  let totalPanier= localStorage.setItem(
+  let totalPanier = localStorage.setItem(
     "totalPanier",
     JSON.stringify(montantTotal)
   );
-
-/*  
-  let produitsDuPanier = JSON.parse(
-    localStorage.getItem("produitsPanier") || "[]"
-  );
-  console.log(produitsDuPanier);*/
 
   //VIDER LE PANIER
   const btn_supprimer_panier_html = `
@@ -121,12 +115,11 @@ async function validationPanier() {
   const email = document.getElementById("email").value;
 
   const formulaire = {
-  
-      firstName: firstname,
-      lastName: lastname,
-      address: adress,
-      city: city,
-      email: email,
+    firstName: firstname,
+    lastName: lastname,
+    address: adress,
+    city: city,
+    email: email,
   };
 
   console.log("formulaire");
@@ -135,35 +128,41 @@ async function validationPanier() {
   //CONTRÔLE FORMULAIRE
 
   //PRENOM
-  function prenomControle(){
+  function prenomControle() {
     //controle validite prenom
     const lePrenom = formulaire.firstName;
     if (/^[A-Z - a-z -é è ï]{2,20}$/.test(lePrenom)) {
       return true;
     } else {
-      alert("Le prénom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères");
+      alert(
+        "Le prénom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères"
+      );
       return false;
     }
   }
 
   //NOM
-  function nomControle(){
+  function nomControle() {
     const leNom = formulaire.lastName;
     if (/^[A-Z - a-z -é è ï ^0-9]{2,20}$/.test(leNom)) {
       return true;
     } else {
-      alert("Le nom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères");
+      alert(
+        "Le nom n'est pas valide - Minimum 2 caractères et ne pas dépasser 20 caractères"
+      );
       return false;
     }
   }
 
   //VILLE
-  function villeControle(){
+  function villeControle() {
     const laVille = formulaire.city;
     if (/[A-Z - a-z -é è ï î]{2,30}$/.test(laVille)) {
       return true;
     } else {
-      alert("La ville n'est pas valide - Minimum 2 caractères et ne pas dépasser 30 caractères");
+      alert(
+        "La ville n'est pas valide - Minimum 2 caractères et ne pas dépasser 30 caractères"
+      );
       return false;
     }
   }
@@ -171,15 +170,15 @@ async function validationPanier() {
   //ENVOI AU LOCALSTORAGE AVEC CONDITION
 
   let envoieAuServeur = {
-    contact : formulaire,
-    products : produits.map(produit => produit.id),
+    contact: formulaire,
+    products: produits.map((produit) => produit.id),
   };
-console.log('envoie au serveur');
-console.log(envoieAuServeur);
+  console.log("envoie au serveur");
+  console.log(envoieAuServeur);
 
-  if(prenomControle() && nomControle() && villeControle()){
-      localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
-      console.log(prenomControle());
+  if (prenomControle() && nomControle() && villeControle()) {
+    localStorage.setItem("commandeClient", JSON.stringify(envoieAuServeur));
+    console.log(prenomControle());
 
     //ENVOI AU SERVEUR
 
@@ -190,7 +189,7 @@ console.log(envoieAuServeur);
         "Content-Type": "application/json",
       },
     });
-    
+
     console.log(server);
 
     server.then(async (response) => {
@@ -203,15 +202,14 @@ console.log(envoieAuServeur);
           console.log("Resultat de reponse.ok : ${response.ok}");
           console.log("id de response");
           console.log(contenu.orderId);
-          
-             //ENVOI DE L'ID DANS LE LOCALSTORAGE
 
-            localStorage.setItem("responseId", contenu.orderId);
-  
-            //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
-           window.location = "confirmation.html";
-            console.log("test");
-          
+          //ENVOI DE L'ID DANS LE LOCALSTORAGE
+
+          localStorage.setItem("responseId", contenu.orderId);
+
+          //ENVOI DE L'ID VERS LA PAGE DE CONFIRMATION
+          window.location = "confirmation.html";
+          console.log("test");
         } else {
           console.log("Reponse du serveur : ${response.status}");
           alert("Probleme avec le serveur : erreur ${response.status}");
@@ -222,8 +220,7 @@ console.log(envoieAuServeur);
         alert("ERREUR qui vient du catch ${e}");
       }
     });
-  } else{
+  } else {
     alert("Veuillez bien remplir le fonctionnaire");
   }
- 
 }

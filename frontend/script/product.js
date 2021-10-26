@@ -9,7 +9,7 @@ let product = fetch(`http://localhost:3000/api/cameras/${id}`);
 product.then(async (response) => {
   if (response.ok) {
     let produit = await response.json();
-    
+
     console.log(produit);
 
     let prixFormate = formaterPrix(produit.price);
@@ -88,7 +88,7 @@ function menuDeroulant(produit) {
         `;
   }
 
- console.log(structureOptions);
+  console.log(structureOptions);
 
   return structureOptions;
 }

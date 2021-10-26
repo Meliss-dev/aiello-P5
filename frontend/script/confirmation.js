@@ -26,8 +26,6 @@ cardConfirmation.innerHTML = `
 //EFFACER LE LOCAL STORAGE
 function enleverCleLocalStorage(key) {
   localStorage.removeItem(key);
-
- 
 }
 enleverCleLocalStorage("totalPanier");
 enleverCleLocalStorage("produitsPanier");
