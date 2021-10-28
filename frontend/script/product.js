@@ -65,7 +65,13 @@ product.then(async (response) => {
     console.log(click);
     click.addEventListener("click", addToCart);
   }
+})
+.catch(() => {
+  alert(
+    "Une erreur semble survenir. Assurez-vous d'être connecté au serveur 3000"
+  );
 });
+;
 
 // FONCTION POUR ARRONDIR LE PRIX
 function formaterPrix(prix) {

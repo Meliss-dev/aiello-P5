@@ -25,7 +25,10 @@ fetchProducts
         </div>
   `;
       }
+    
+    ;
     }
+    
   })
 
   .catch(() => {
@@ -33,6 +36,7 @@ fetchProducts
       "Une erreur semble survenir. Assurez-vous d'être connecté au serveur 3000"
     );
   });
+
 
 // Function pour arrondir le prix
 function formaterPrix(prix) {
