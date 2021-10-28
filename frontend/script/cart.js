@@ -104,7 +104,7 @@ for (let l = 0; l < buttonSupprimer.length; l++) {
 
 //FORMULAIRE POUR VALIDER LE PANIER
 async function validationPanier() {
-  produits = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
+  produits = JSON.parse(localStorage.getItem("produitsPanier"));
   console.log("produits");
   console.log(produits);
 

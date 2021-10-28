@@ -103,10 +103,11 @@ function menuDeroulant(produit) {
 async function addToCart() {
   let jsonData = await fetch("http://localhost:3000/api/cameras/" + id).then(
     function (res) {
-      return res.json();
+      return res.json(); 
     }
-  );
-  alert("Votre article a été ajouté au panier");
+    )
+    alert("Votre article a été ajouté au panier");
+  console.log(jsonData);
 
   //AJOUT DU PANIER AU LOCALSTORAGE
   let panier = JSON.parse(localStorage.getItem("produitsPanier") || "[]");
